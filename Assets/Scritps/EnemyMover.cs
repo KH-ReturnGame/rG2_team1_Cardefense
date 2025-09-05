@@ -5,6 +5,7 @@ public class EnemyMover : MonoBehaviour
     public Path path;        // Path.cs 붙은 오브젝트 (웨이포인트 관리)
     public float moveSpeed = 2f;
     public int damage = 1;
+    public float HP = 100f;
 
     int idx = 0;             // 현재 목표 웨이포인트의 인덱스
 

@@ -25,9 +25,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -41,14 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tower
-    uniqueID: 3973887587
-    locked: 0
   - name: Background
-    uniqueID: 582718391
+    uniqueID: 4189426099
     locked: 0
   - name: Enemy
-    uniqueID: 4152772603
+    uniqueID: 2425651459
+    locked: 0
+  - name: Tower
+    uniqueID: 4250941897
     locked: 0
   m_RenderingLayers:
   - Default
