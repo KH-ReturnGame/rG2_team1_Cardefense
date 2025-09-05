@@ -102,6 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  moveSpeed: 1
+  moveSpeed: 4
   damage: 5
   HP: 100

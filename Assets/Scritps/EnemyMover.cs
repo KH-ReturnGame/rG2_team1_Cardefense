@@ -7,23 +7,34 @@ public class EnemyMover : MonoBehaviour
     public int damage = 1;
     public float HP = 100f;
 
-    int idx = 0;             // 현재 목표 웨이포인트의 인덱스
+    private int idx = 0;     // 현재 목표 웨이포인트 인덱스
 
     void Start()
     {
+        // Path가 Inspector에 없으면 Scene에서 자동으로 찾기
+        if (path == null)
+        {
+            path = FindObjectOfType<Path>();
+            if (path == null)
+            {
+                Debug.LogError("Scene에 Path 오브젝트가 없습니다!");
+                return;
+            }
+        }
+
         // 처음 위치를 Start(0번)으로
         transform.position = path.points[0].position;
-        idx = 1; // 다음 목표는 1번 웨이포인트
+        idx = 1; // 다음 목표 웨이포인트
     }
 
     void Update()
     {
-        if (idx >= path.points.Count) return;
+        if (path == null || idx >= path.points.Count) return;
 
         // 현재 목표 웨이포인트 좌표
         Vector3 target = path.points[idx].position;
 
-        // 적을 목표 지점까지 이동
+        // 목표 지점까지 이동
         transform.position = Vector3.MoveTowards(
             transform.position,
             target,
@@ -35,7 +46,7 @@ public class EnemyMover : MonoBehaviour
         {
             idx++; // 다음 웨이포인트로 이동
 
-            // 마지막 End까지 도달하면
+            // 마지막 End에 도달하면
             if (idx >= path.points.Count)
             {
                 ReachEnd();
@@ -45,7 +56,7 @@ public class EnemyMover : MonoBehaviour
 
     void ReachEnd()
     {
-        GameManager.Instance.PlayerTakeDamage(damage); // HP 감소
+        GameManager.Instance.PlayerTakeDamage(damage); // 플레이어 HP 감소
         Destroy(gameObject); // 자기 자신 삭제
     }
 }
