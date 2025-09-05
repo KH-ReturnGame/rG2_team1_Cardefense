@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3778771421953820613}
   - component: {fileID: 1742323164533893211}
   m_Layer: 0
-  m_Name: Enemy(1)
+  m_Name: Enemy(Speed)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,4 +104,4 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 7.5
   damage: 5
-  HP: 100
+  Hp: 100
