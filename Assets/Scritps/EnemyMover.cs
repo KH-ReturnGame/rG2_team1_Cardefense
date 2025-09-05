@@ -1,52 +1,52 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
-    public Path path;        // Path.cs ºÙÀº ¿ÀºêÁ§Æ® (¿şÀÌÆ÷ÀÎÆ® °ü¸®)
-    public float moveSpeed = 2f;
-    public int damage = 1;
-    public float HP = 100f;
+    // ì ì´ ë”°ë¼ê°ˆ ê²½ë¡œ (Path ì˜¤ë¸Œì íŠ¸)
+    public Path path;
 
-    private int idx = 0;     // ÇöÀç ¸ñÇ¥ ¿şÀÌÆ÷ÀÎÆ® ÀÎµ¦½º
+    // ì´ë™ ì†ë„
+    public float moveSpeed = 2f;
+
+    // ë„ì°© ì‹œ í”Œë ˆì´ì–´ì—ê²Œ ì…íˆëŠ” í”¼í•´ëŸ‰
+    public int damage = 1;
+
+    // ì ì˜ ì²´ë ¥ (ì•„ì§ ì‚¬ìš©ë˜ì§€ ì•Šì•˜ì§€ë§Œ ì¶”í›„ ê³µê²© ì²˜ë¦¬ì— ì‚¬ìš© ê°€ëŠ¥)
+    public float Hp = 100;
+
+    // í˜„ì¬ ëª©í‘œ ì§€ì ì˜ ì¸ë±ìŠ¤
+    private int idx = 0;
 
     void Start()
     {
-        // Path°¡ Inspector¿¡ ¾øÀ¸¸é Scene¿¡¼­ ÀÚµ¿À¸·Î Ã£±â
+        // Pathê°€ ì§€ì •ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ìë™ìœ¼ë¡œ ì°¾ê¸°
         if (path == null)
-        {
             path = FindObjectOfType<Path>();
-            if (path == null)
-            {
-                Debug.LogError("Scene¿¡ Path ¿ÀºêÁ§Æ®°¡ ¾ø½À´Ï´Ù!");
-                return;
-            }
-        }
 
-        // Ã³À½ À§Ä¡¸¦ Start(0¹ø)À¸·Î
+        // ì²« ë²ˆì§¸ ì›¨ì´í¬ì¸íŠ¸ì—ì„œ ì‹œì‘
         transform.position = path.points[0].position;
-        idx = 1; // ´ÙÀ½ ¸ñÇ¥ ¿şÀÌÆ÷ÀÎÆ®
+        idx = 1; // ë‹¤ìŒ ëª©í‘œëŠ” ë‘ ë²ˆì§¸ ì›¨ì´í¬ì¸íŠ¸
+
+        // EnemyManagerì— ìì‹ ì„ ë“±ë¡ (í„´ ì¢…ë£Œ ì²´í¬ìš©)
+        EnemyManager.Instance.RegisterEnemy(gameObject);
     }
 
     void Update()
     {
-        if (path == null || idx >= path.points.Count) return;
+        // ëª¨ë“  ì›¨ì´í¬ì¸íŠ¸ë¥¼ ì§€ë‚œ ê²½ìš° ë” ì´ìƒ ì´ë™í•˜ì§€ ì•ŠìŒ
+        if (idx >= path.points.Count) return;
 
-        // ÇöÀç ¸ñÇ¥ ¿şÀÌÆ÷ÀÎÆ® ÁÂÇ¥
+        // í˜„ì¬ ëª©í‘œ ìœ„ì¹˜
         Vector3 target = path.points[idx].position;
 
-        // ¸ñÇ¥ ÁöÁ¡±îÁö ÀÌµ¿
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            target,
-            moveSpeed * Time.deltaTime
-        );
+        // ëª©í‘œ ì§€ì ê¹Œì§€ ì´ë™
+        transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 
-        // ¸ñÇ¥ ÁöÁ¡¿¡ °ÅÀÇ µµ´ŞÇßÀ» ¶§
+        // ëª©í‘œ ì§€ì ì— ë„ì°©í–ˆëŠ”ì§€ í™•ì¸
         if (Vector3.Distance(transform.position, target) < 0.05f)
         {
-            idx++; // ´ÙÀ½ ¿şÀÌÆ÷ÀÎÆ®·Î ÀÌµ¿
-
-            // ¸¶Áö¸· End¿¡ µµ´ŞÇÏ¸é
+            idx++;
+            // ë§ˆì§€ë§‰ ì§€ì ê¹Œì§€ ë„ì°©í•˜ë©´ ReachEnd ì‹¤í–‰
             if (idx >= path.points.Count)
             {
                 ReachEnd();
@@ -54,9 +54,22 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
+    // ì ì´ ëê¹Œì§€ ë„ë‹¬í–ˆì„ ë•Œ ì‹¤í–‰
     void ReachEnd()
     {
-        GameManager.Instance.PlayerTakeDamage(damage); // ÇÃ·¹ÀÌ¾î HP °¨¼Ò
-        Destroy(gameObject); // ÀÚ±â ÀÚ½Å »èÁ¦
+        // í”Œë ˆì´ì–´ì—ê²Œ í”¼í•´ë¥¼ ì£¼ê³ 
+        GameManager.Instance.PlayerTakeDamage(damage);
+
+        // EnemyManagerì—ì„œ ìì‹ ì„ í•´ì œ í›„ íŒŒê´´
+        EnemyManager.Instance.UnregisterEnemy(gameObject);
+        Destroy(gameObject);
+    }
+
+    // ì ì´ íŒŒê´´ë  ë•Œ (ì˜ˆ: íƒ€ì›Œ ê³µê²©ìœ¼ë¡œ ì£½ìŒ) í˜¸ì¶œë¨
+    void OnDestroy()
+    {
+        // í˜¹ì‹œ ì•„ì§ EnemyManagerì— ë‚¨ì•„ìˆìœ¼ë©´ í•´ì œ
+        if (EnemyManager.Instance != null)
+            EnemyManager.Instance.UnregisterEnemy(gameObject);
     }
 }

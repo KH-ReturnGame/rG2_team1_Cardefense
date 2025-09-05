@@ -1,5 +1,4 @@
-using System.Collections;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public enum TurnState
 {
@@ -25,13 +24,13 @@ public class TurnManager : MonoBehaviour
         BeginPlayerTurn();
     }
 
-    // ===== ÇÃ·¹ÀÌ¾î ÅÏ =====
+    // ===== í”Œë ˆì´ì–´ í„´ =====
     private void BeginPlayerTurn()
     {
         state = TurnState.PlayerTurn;
-        Debug.Log($"=== ÇÃ·¹ÀÌ¾î ÅÏ {currentTurn} ½ÃÀÛ ===");
+        Debug.Log($"=== í”Œë ˆì´ì–´ í„´ {currentTurn} ì‹œìž‘ ===");
 
-        // TODO: Ä«µå µå·Î¿ì, UI Ç¥½Ã µî
+        // TODO: ì¹´ë“œ ë“œë¡œìš°, UI í‘œì‹œ ë“±
     }
 
     public void EndPlayerTurn()
@@ -42,48 +41,26 @@ public class TurnManager : MonoBehaviour
         BeginEnemyTurn();
     }
 
-    // ===== Àû ÅÏ =====
+    // ===== ì  í„´ =====
     private void BeginEnemyTurn()
     {
-        Debug.Log($"Àû ÅÏ {currentTurn} ½ÃÀÛ");
+        Debug.Log($"ì  í„´ {currentTurn} ì‹œìž‘");
 
         bool bossTurn = (currentTurn % 5 == 0);
         EnemySpawner.Instance.SpawnWave(bossTurn);
 
-        // ÀûÀÌ ´Ù Á×À¸¸é 1ÃÊ µÚ Á¾·á
-        StartCoroutine(CheckEndEnemyTurn());
+        // âœ… ì´ì œëŠ” EnemyManagerì—ì„œ ì ì´ ë‹¤ ì£½ì—ˆì„ ë•Œ
+        // ìžë™ìœ¼ë¡œ EndEnemyTurn()ì„ í˜¸ì¶œí•¨
     }
 
-    private IEnumerator CheckEndEnemyTurn()
+    public void EndEnemyTurn()
     {
-        while (true)
-        {
-            // Enemy°¡ ÇÏ³ªµµ ¾øÀ¸¸é 1ÃÊ ±â´Ù¸° ÈÄ Á¾·á
-            if (GameObject.FindWithTag("Enemy") == null)
-            {
-                yield return new WaitForSeconds(1f);
-
-                // ´Ù½Ã È®ÀÎ: Enemy°¡ ¿©ÀüÈ÷ ¾øÀ¸¸é ÅÏ Á¾·á
-                if (GameObject.FindWithTag("Enemy") == null)
-                {
-                    EndEnemyTurn();
-                    yield break;
-                }
-            }
-
-            yield return null; // 1ÇÁ·¹ÀÓ ´ë±â ÈÄ ÀçÈ®ÀÎ
-        }
-    }
-
-    private void EndEnemyTurn()
-    {
-        Debug.Log($"Àû ÅÏ {currentTurn} Á¾·á");
+        Debug.Log($"ì  í„´ {currentTurn} ì¢…ë£Œ");
 
         currentTurn++;
-
         if (currentTurn > maxTurn)
         {
-            Debug.Log("°ÔÀÓ Á¾·á!");
+            Debug.Log("ê²Œìž„ ì¢…ë£Œ!");
             return;
         }
 
