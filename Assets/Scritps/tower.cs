@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     public Transform firePoint;           // 총알 발사 위치
 
     private float attackCooldown = 0f;
+    private GameObject currentTarget;     // 우선순위 1번: 현재 타겟 유지용
 
     void Update()
     {
@@ -25,7 +26,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        GameObject enemy = FindNearestEnemy();
+        GameObject enemy = GetTarget();
         if (enemy != null && bulletPrefab != null && firePoint != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
@@ -37,28 +38,44 @@ public class Tower : MonoBehaviour
         }
     }
 
-    GameObject FindNearestEnemy()
+    GameObject GetTarget()
     {
-        GameObject nearest = null;
-        float minDistance = Mathf.Infinity;
-
-        foreach (var enemy in EnemyManager.Instance.transform)
+        // 1. 현재 타겟이 범위 안에 있다면 그대로 유지
+        if (currentTarget != null)
         {
-            // EnemyManager 리스트 활용: 
-            // 만약 EnemyManager.enemies 리스트를 public으로 만들면 FindObjectsOfType 대신 사용 가능
-        }
-
-        // 임시로 FindObjectsOfType 사용
-        foreach (var enemy in FindObjectsOfType<EnemyMover>())
-        {
-            float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist <= range && dist < minDistance)
+            float dist = Vector3.Distance(transform.position, currentTarget.transform.position);
+            if (dist <= range)
             {
-                minDistance = dist;
-                nearest = enemy.gameObject;
+                return currentTarget;
             }
         }
 
+        // 2. 아니면 새로운 타겟 탐색
+        GameObject nearest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (var enemy in FindObjectsOfType<EnemyMover>())
+        {
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
+            if (dist <= range)
+            {
+                // 첫 발견된 적 -> currentTarget으로 고정 (우선순위 1)
+                if (currentTarget == null)
+                {
+                    currentTarget = enemy.gameObject;
+                    return currentTarget;
+                }
+
+                // 만약 우선 타겟이 없으면 가장 가까운 적 선택 (우선순위 2)
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    nearest = enemy.gameObject;
+                }
+            }
+        }
+
+        // 타겟 없으면 null, 있으면 가장 가까운 적
         return nearest;
     }
 
