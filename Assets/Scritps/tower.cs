@@ -9,15 +9,26 @@ public class Tower : MonoBehaviour
     public float attackRate = 1f;         // 공격 속도
     public GameObject bulletPrefab;       // 총알 프리팹
     public Transform firePoint;           // 총알 발사 위치
+    public float rotationSpeed = 5f;      // 회전 속도
 
     private float attackCooldown = 0f;
-    private GameObject currentTarget;     // 우선순위 1번: 현재 타겟 유지용
+    private GameObject currentTarget;
 
     void Update()
     {
         attackCooldown -= Time.deltaTime;
 
-        if (attackCooldown <= 0f)
+        // 타겟 찾기
+        currentTarget = GetTarget();
+
+        // 타겟이 있으면 회전
+        if (currentTarget != null)
+        {
+            RotateTowardsTarget(currentTarget);
+        }
+
+        // 공격
+        if (attackCooldown <= 0f && currentTarget != null)
         {
             Shoot();
             attackCooldown = 1f / attackRate;
@@ -26,56 +37,50 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        GameObject enemy = GetTarget();
-        if (enemy != null && bulletPrefab != null && firePoint != null)
+        if (bulletPrefab != null && firePoint != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             if (bulletScript != null)
             {
-                bulletScript.enemy = enemy;
+                bulletScript.enemy = currentTarget;
             }
         }
     }
 
+    void RotateTowardsTarget(GameObject target)
+    {
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f; // 스프라이트 위쪽 기준
+        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+        // 부드럽게 회전
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+    }
+
     GameObject GetTarget()
     {
-        // 1. 현재 타겟이 범위 안에 있다면 그대로 유지
+        // 1️⃣ 현재 타겟이 범위 내에 있으면 그대로
         if (currentTarget != null)
         {
             float dist = Vector3.Distance(transform.position, currentTarget.transform.position);
             if (dist <= range)
-            {
                 return currentTarget;
-            }
         }
 
-        // 2. 아니면 새로운 타겟 탐색
+        // 2️⃣ 범위 내에서 가장 가까운 적 찾기
         GameObject nearest = null;
         float minDistance = Mathf.Infinity;
 
         foreach (var enemy in FindObjectsOfType<EnemyMover>())
         {
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist <= range)
+            if (dist <= range && dist < minDistance)
             {
-                // 첫 발견된 적 -> currentTarget으로 고정 (우선순위 1)
-                if (currentTarget == null)
-                {
-                    currentTarget = enemy.gameObject;
-                    return currentTarget;
-                }
-
-                // 만약 우선 타겟이 없으면 가장 가까운 적 선택 (우선순위 2)
-                if (dist < minDistance)
-                {
-                    minDistance = dist;
-                    nearest = enemy.gameObject;
-                }
+                minDistance = dist;
+                nearest = enemy.gameObject;
             }
         }
 
-        // 타겟 없으면 null, 있으면 가장 가까운 적
         return nearest;
     }
 
@@ -85,3 +90,4 @@ public class Tower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 }
+

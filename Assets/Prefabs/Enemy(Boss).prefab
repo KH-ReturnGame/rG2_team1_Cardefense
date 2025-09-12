@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 213991467333143864}
   - component: {fileID: 528031200306890983}
   m_Layer: 0
-  m_Name: Enemy(3)
+  m_Name: Enemy(Boss)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,4 +104,4 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 1
   damage: 15
-  Hp: 1250
+  Hp: 3000

@@ -1,17 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
+public class WaveInfo
+{
+    public int normalEnemyCount;    // 1번 적 수
+    public int fastEnemyCount;      // 2번 적 수
+    public int tankEnemyCount;      // 3번 적 수
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
 
     [Header("적 프리팹")]
     public GameObject normalEnemyPrefab;
+    public GameObject fastEnemyPrefab;
+    public GameObject tankEnemyPrefab;
     public GameObject bossEnemyPrefab;
 
     [Header("웨이브 설정")]
     public int maxWave = 5;                     // 총 웨이브 수
-    public int[] enemiesPerWave = new int[4];   // 1~4웨이브 적 수, Inspector에서 설정 가능
+    public WaveInfo[] waves;                    // 각 웨이브별 적 수
     public float spawnDelay = 0.5f;             // 적 스폰 간격
     public float healthMultiplierPerWave = 1.2f;// 웨이브당 체력 배율
 
@@ -39,9 +49,17 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            // 배열 범위를 체크해서 각 웨이브마다 다른 적 수 적용
-            int enemyCount = (currentWave - 1 < enemiesPerWave.Length) ? enemiesPerWave[currentWave - 1] : 3;
-            StartCoroutine(SpawnEnemiesWithDelay(enemyCount, spawnDelay, healthMultiplier));
+            if (waves.Length >= currentWave)
+            {
+                WaveInfo wave = waves[currentWave - 1];
+
+                if (wave.normalEnemyCount > 0)
+                    StartCoroutine(SpawnEnemiesWithDelay(normalEnemyPrefab, wave.normalEnemyCount, spawnDelay, healthMultiplier));
+                if (wave.fastEnemyCount > 0)
+                    StartCoroutine(SpawnEnemiesWithDelay(fastEnemyPrefab, wave.fastEnemyCount, spawnDelay, healthMultiplier));
+                if (wave.tankEnemyCount > 0)
+                    StartCoroutine(SpawnEnemiesWithDelay(tankEnemyPrefab, wave.tankEnemyCount, spawnDelay, healthMultiplier));
+            }
         }
 
         if (currentWave >= maxWave)
@@ -51,11 +69,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnEnemiesWithDelay(int count, float delay, float healthMultiplier)
+    private IEnumerator SpawnEnemiesWithDelay(GameObject enemyPrefab, int count, float delay, float healthMultiplier)
     {
         for (int i = 0; i < count; i++)
         {
-            GameObject enemy = Instantiate(normalEnemyPrefab, transform.position, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             EnemyMover enemyScript = enemy.GetComponent<EnemyMover>();
             if (enemyScript != null)
             {
@@ -63,7 +81,5 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(delay);
         }
-        Debug.Log("일반 웨이브 완료!");
     }
 }
-
