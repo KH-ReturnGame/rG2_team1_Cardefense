@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5,
     type: 3}
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 5.5
   attackRate: 15
-  bulletPrefab: {fileID: 4969296973797467619, guid: 4f5bf65f468142c4f8bae670ec0073b6,
+  bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
     type: 3}
   firePoint: {fileID: 3774200851377173037}
   rotationSpeed: 30
@@ -271,7 +271,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -44025399
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}

@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 4189426099
     locked: 0
+  - name: Bullet
+    uniqueID: 1158602639
+    locked: 0
   - name: Enemy
     uniqueID: 2425651459
     locked: 0
