@@ -11,7 +11,7 @@ public class EnemyMover : MonoBehaviour
     // 도착 시 플레이어에게 입히는 피해량
     public int damage = 1;
 
-    // 적의 체력 (아직 사용되지 않았지만 추후 공격 처리에 사용 가능)
+    // 적의 체력
     public float Hp = 100;
 
     // 현재 목표 지점의 인덱스
