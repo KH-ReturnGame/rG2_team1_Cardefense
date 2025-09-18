@@ -103,4 +103,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   speed: 30
-  damage: 50
+  damage: 200

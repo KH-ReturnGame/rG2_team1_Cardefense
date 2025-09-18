@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  attackRate: 0.5
+  attackRate: 0.7
   bulletPrefab: {fileID: 5124101496305907119, guid: 3169266ba7f5e83459805b18b50283fa,
     type: 3}
   firePoint: {fileID: 7124631335129420396}
@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7124631335129420396}
   - component: {fileID: 7446239451259748185}
+  - component: {fileID: 4298939228238128783}
   m_Layer: 0
   m_Name: Aim
   m_TagString: Untagged
@@ -194,3 +195,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4298939228238128783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398493592826483540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d4fbb4f94c9af4390b35de28356f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.06
+  moveSpeed: 10

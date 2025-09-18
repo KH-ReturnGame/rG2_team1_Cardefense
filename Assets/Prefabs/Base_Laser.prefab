@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
-  m_Color: {r: 0.41037738, g: 0.16309808, b: 0.08710842, a: 1}
+  m_Color: {r: 1, g: 0.24096388, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b070ffb9f079cb4a96ab3a84aa2a35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7
-  attackRate: 1000000
+  range: 4.5
+  attackRate: 500
   bulletPrefab: {fileID: 8606253122585516254, guid: 3e50b26edc55b4846bdb8c60caba7f98,
     type: 3}
   firePoint: {fileID: 2255299696008724335}
@@ -185,9 +185,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -44025399
-  m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingLayerID: -105541197
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -272,6 +272,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190067576701541670, guid: d4c7e485c584ef44dbdc69249b101cc3,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190067576701541670, guid: d4c7e485c584ef44dbdc69249b101cc3,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.24096388
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190067576701541670, guid: d4c7e485c584ef44dbdc69249b101cc3,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

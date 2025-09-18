@@ -20,12 +20,12 @@ public class EnemySpawner : MonoBehaviour
     public GameObject bossEnemyPrefab;
 
     [Header("웨이브 설정")]
-    public int maxWave = 5;                     // 총 웨이브 수
+    public int maxWave = 5;                     // 일반 웨이브 패턴 개수
     public WaveInfo[] waves;                    // 각 웨이브별 적 수
     public float spawnDelay = 0.5f;             // 적 스폰 간격
     public float healthMultiplierPerWave = 1.2f;// 웨이브당 체력 배율
 
-    private int currentWave = 0;
+    private int currentWave = 0;   // 현재 웨이브 번호 (1,2,3,4,...)
 
     void Awake()
     {
@@ -34,10 +34,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnWave(bool isBossTurn)
     {
-        currentWave++;
+        currentWave++; // 턴마다 증가
         float healthMultiplier = Mathf.Pow(healthMultiplierPerWave, currentWave - 1);
 
-        if (isBossTurn || currentWave == maxWave) // 마지막 웨이브 또는 보스 웨이브
+        // 5턴마다 보스만 단독 소환
+        if (isBossTurn)
         {
             GameObject boss = Instantiate(bossEnemyPrefab, transform.position, Quaternion.identity);
             EnemyMover bossScript = boss.GetComponent<EnemyMover>();
@@ -45,13 +46,14 @@ public class EnemySpawner : MonoBehaviour
             {
                 bossScript.Hp *= healthMultiplier;
             }
-            Debug.Log("보스 웨이브!");
         }
         else
         {
-            if (waves.Length >= currentWave)
+            // 반복 패턴 → 웨이브 배열에서 꺼내오기
+            int waveIndex = (currentWave - 1) % maxWave;
+            if (waveIndex < waves.Length)
             {
-                WaveInfo wave = waves[currentWave - 1];
+                WaveInfo wave = waves[waveIndex];
 
                 if (wave.normalEnemyCount > 0)
                     StartCoroutine(SpawnEnemiesWithDelay(normalEnemyPrefab, wave.normalEnemyCount, spawnDelay, healthMultiplier));
@@ -60,12 +62,6 @@ public class EnemySpawner : MonoBehaviour
                 if (wave.tankEnemyCount > 0)
                     StartCoroutine(SpawnEnemiesWithDelay(tankEnemyPrefab, wave.tankEnemyCount, spawnDelay, healthMultiplier));
             }
-        }
-
-        if (currentWave >= maxWave)
-        {
-            currentWave = 0; // 반복 또는 종료 처리
-            Debug.Log("모든 웨이브 완료!");
         }
     }
 
@@ -83,3 +79,4 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 }
+
