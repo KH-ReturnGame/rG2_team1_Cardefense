@@ -53,5 +53,11 @@ TagManager:
   - name: Tower
     uniqueID: 4250941897
     locked: 0
+  - name: CardBoard
+    uniqueID: 1585451347
+    locked: 0
+  - name: Card
+    uniqueID: 3839881565
+    locked: 0
   m_RenderingLayers:
   - Default
