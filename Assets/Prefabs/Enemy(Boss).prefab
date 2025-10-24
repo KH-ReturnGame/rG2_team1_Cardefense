@@ -104,4 +104,4 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 2
   damage: 15
-  Hp: 4500
+  Hp: 3500
