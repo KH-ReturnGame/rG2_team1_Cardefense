@@ -104,3 +104,5 @@ MonoBehaviour:
   enemy: {fileID: 0}
   speed: 30
   damage: 250
+  criticalDamageMultiplier: 2
+  isCritical: 0

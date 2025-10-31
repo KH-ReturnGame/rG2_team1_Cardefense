@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5863335204919399578}
   - component: {fileID: 7485857843293211419}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: Tower(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3224128981091357639}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 3.3, y: -1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -195,8 +195,11 @@ MonoBehaviour:
   attackRate: 1
   bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
     type: 3}
+  CbulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
+    type: 3}
   firePoint: {fileID: 3774200851377173037}
   rotationSpeed: 30
+  critical: 5
 --- !u!1 &6987754852031240222
 GameObject:
   m_ObjectHideFlags: 0
