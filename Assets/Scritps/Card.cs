@@ -58,7 +58,7 @@ public class Card : MonoBehaviour
         {
             // 지금은 즉시 적용 구조만 연결 (실제 강화는 다음 단계)
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreaseAttackSpeed(0.5f);
+            currentTower.IncreaseAttackSpeed(0.1f);
             Destroy(gameObject);
         }
         else
