@@ -1,19 +1,25 @@
 using UnityEngine;
+using System.Collections;
 
 public class Card : MonoBehaviour
 {
     private Vector3 startPos;
     private Vector3 offset;
+
     private SpriteRenderer[] renderers;
     private int[] relativeOrders;
     private int baseOrder;
+
     private bool isOverTower = false;
     private bool isReturning = false;
     private float returnSpeed = 10f;
 
+    private Tower currentTower;   // 카드가 올라간 타워 참조
+
     void Start()
     {
         startPos = transform.position;
+
         renderers = GetComponentsInChildren<SpriteRenderer>();
         baseOrder = GetComponent<SpriteRenderer>().sortingOrder;
 
@@ -48,8 +54,11 @@ public class Card : MonoBehaviour
     {
         if (isReturning) return;
 
-        if (isOverTower)
+        if (isOverTower && currentTower != null)
         {
+            // 지금은 즉시 적용 구조만 연결 (실제 강화는 다음 단계)
+            Debug.Log("타워에 카드 적용됨: " + currentTower.name);
+            currentTower.IncreaseAttackSpeed(0.5f);
             Destroy(gameObject);
         }
         else
@@ -58,18 +67,21 @@ public class Card : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator ReturnToStart()
+    IEnumerator ReturnToStart()
     {
         isReturning = true;
 
         while (Vector3.Distance(transform.position, startPos) > 0.01f)
         {
-            transform.position = Vector3.Lerp(transform.position, startPos, Time.deltaTime * returnSpeed);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                startPos,
+                Time.deltaTime * returnSpeed
+            );
             yield return null;
         }
 
         transform.position = startPos;
-
         SetOrderWithOffset(baseOrder);
 
         isReturning = false;
@@ -85,17 +97,28 @@ public class Card : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Tower"))
+        if (!other.CompareTag("Tower")) return;
+
+        isOverTower = true;
+
+        // Tower 태그가 붙은 부모 아래에서 Tower.cs 탐색
+        currentTower = other.GetComponentInChildren<Tower>();
+
+        if (currentTower != null)
         {
-            isOverTower = true;
+            Debug.Log("카드가 타워 위에 올라감: " + currentTower.name);
+        }
+        else
+        {
+            Debug.LogWarning("Tower 태그는 있지만 Tower.cs를 찾지 못함");
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Tower"))
-        {
-            isOverTower = false;
-        }
+        if (!other.CompareTag("Tower")) return;
+
+        isOverTower = false;
+        currentTower = null;
     }
 }

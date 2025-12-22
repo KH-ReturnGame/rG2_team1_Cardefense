@@ -820,6 +820,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &593739136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+    type: 3}
+  m_PrefabInstance: {fileID: 1368605375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &593739140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593739136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b070ffb9f079cb4a96ab3a84aa2a35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5.5
+  attackRate: 1
+  bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
+    type: 3}
+  CbulletPrefab: {fileID: 7414101517605900757, guid: b965bc89da8ee1147b9475f3e3847c0f,
+    type: 3}
+  firePoint: {fileID: 622580603}
+  rotationSpeed: 30
+  critical: 10
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +931,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &622580603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3774200851377173037, guid: 9a5894fc142faf94292081fbaf284697,
+    type: 3}
+  m_PrefabInstance: {fileID: 1368605375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &636009722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1100,7 @@ PrefabInstance:
     - target: {fileID: 3224128981091357639, guid: 9a5894fc142faf94292081fbaf284697,
         type: 3}
       propertyPath: m_Name
-      value: Tower(2)
+      value: Tower(1)
       objectReference: {fileID: 0}
     - target: {fileID: 3224128981091357639, guid: 9a5894fc142faf94292081fbaf284697,
         type: 3}
@@ -1135,10 +1168,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      propertyPath: m_Name
+      value: "\uD68C\uC804\uCD95(1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4977250475053274762, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2002114373}
   m_SourcePrefab: {fileID: 100100000, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
 --- !u!1 &1098749147
 GameObject:
@@ -1612,7 +1660,7 @@ PrefabInstance:
     - target: {fileID: 3224128981091357639, guid: 9a5894fc142faf94292081fbaf284697,
         type: 3}
       propertyPath: m_Name
-      value: Tower(1)
+      value: Tower(2)
       objectReference: {fileID: 0}
     - target: {fileID: 3224128981091357639, guid: 9a5894fc142faf94292081fbaf284697,
         type: 3}
@@ -1680,10 +1728,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      propertyPath: m_Name
+      value: "\uD68C\uC804\uCD95(2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4977250475053274762, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 593739140}
   m_SourcePrefab: {fileID: 100100000, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
 --- !u!1 &1429307729
 GameObject:
@@ -5745,6 +5808,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48c295616d64da7478842f0c83cbdbd6, type: 3}
+--- !u!4 &1704754254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3774200851377173037, guid: 9a5894fc142faf94292081fbaf284697,
+    type: 3}
+  m_PrefabInstance: {fileID: 1026704842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1757120858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5924,6 +5993,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2002114369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
+    type: 3}
+  m_PrefabInstance: {fileID: 1026704842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002114373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002114369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b070ffb9f079cb4a96ab3a84aa2a35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5.5
+  attackRate: 1
+  bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
+    type: 3}
+  CbulletPrefab: {fileID: 7414101517605900757, guid: b965bc89da8ee1147b9475f3e3847c0f,
+    type: 3}
+  firePoint: {fileID: 1704754254}
+  rotationSpeed: 30
+  critical: 10
 --- !u!1 &2011991675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6167,5 +6263,5 @@ SceneRoots:
   - {fileID: 2121980089}
   - {fileID: 120254228}
   - {fileID: 201546077}
-  - {fileID: 1368605375}
   - {fileID: 1026704842}
+  - {fileID: 1368605375}

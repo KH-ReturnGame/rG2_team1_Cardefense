@@ -14,6 +14,8 @@ public class TurnManager : MonoBehaviour
     public int currentTurn = 1;
     public int maxTurn = 15;
 
+    public CardManager cardManager;
+
     private void Awake()
     {
         Instance = this;
@@ -30,7 +32,7 @@ public class TurnManager : MonoBehaviour
         state = TurnState.PlayerTurn;
         Debug.Log($"=== 플레이어 턴 {currentTurn} 시작 ===");
 
-        // TODO: 카드 드로우, UI 표시 등
+        cardManager.Spawncards();
     }
 
     public void EndPlayerTurn()
