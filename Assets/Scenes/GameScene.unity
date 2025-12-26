@@ -1019,8 +1019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b313514991b364daec1386caa521a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardprefab: {fileID: 6709565187002743558, guid: 48c295616d64da7478842f0c83cbdbd6,
+  cardPrefab: {fileID: 6709565187002743558, guid: 48c295616d64da7478842f0c83cbdbd6,
     type: 3}
+  cardBoard: {fileID: 201546078}
+  maxCardCount: 5
   cardCount: 3
   cardBoard: {fileID: 201546078}
 --- !u!4 &827500332
