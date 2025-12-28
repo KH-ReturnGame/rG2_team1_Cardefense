@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Card : MonoBehaviour
+public class SCard : MonoBehaviour
 {
     private Vector3 startPos;
     private Vector3 offset;

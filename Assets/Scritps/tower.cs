@@ -116,10 +116,6 @@ public class Tower : MonoBehaviour
     {
         attackRate += value;
     }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
     public void IncreaseCritical(float value)
     {
         critical += value;
@@ -130,7 +126,4 @@ public class Tower : MonoBehaviour
         damageMultiplier += value;
     }
 
-=======
->>>>>>> b4e2d12ce525630857cd2739eb151ccc0a5341b7
->>>>>>> Stashed changes
 }

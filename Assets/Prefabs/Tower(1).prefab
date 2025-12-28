@@ -104,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032047200494738231}
   - component: {fileID: 8539640213342463480}
+  - component: {fileID: 830417445472681363}
   m_Layer: 0
   m_Name: "\uD68C\uC804\uCD95"
   m_TagString: Untagged
@@ -348,6 +349,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3564065650815419312}
+    - targetCorrespondingSourceObject: {fileID: 2322825081394317691, guid: 222b76026a80d1741831d3680e86b670,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 830417445472681363}
   m_SourcePrefab: {fileID: 100100000, guid: 222b76026a80d1741831d3680e86b670, type: 3}
 --- !u!60 &3564065650815419312
 PolygonCollider2D:
@@ -402,3 +407,25 @@ PolygonCollider2D:
       - {x: 0.5, y: 0}
       - {x: 0.25, y: 0.43359375}
   m_UseDelaunayMesh: 0
+--- !u!114 &830417445472681363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047104411810846735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b070ffb9f079cb4a96ab3a84aa2a35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  attackRate: 1
+  bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
+    type: 3}
+  CbulletPrefab: {fileID: 7414101517605900757, guid: b965bc89da8ee1147b9475f3e3847c0f,
+    type: 3}
+  firePoint: {fileID: 3774200851377173037}
+  rotationSpeed: 5
+  critical: 5
+  damageMultiplier: 1
