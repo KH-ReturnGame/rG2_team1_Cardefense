@@ -57,7 +57,7 @@ public class CCard : MonoBehaviour
         if (isOverTower && currentTower != null)
         {
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreaseCritical(5f);
+            currentTower.IncreaseCritical(3f);
             Destroy(gameObject);
         }
         else

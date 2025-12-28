@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public GameObject cardPrefab;
+    public GameObject[] cardPrefabs;
     public CardBoard cardBoard;
 
     public int maxCardCount = 5;
@@ -13,7 +13,8 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < cardCount; i++)
         {
-            GameObject card = Instantiate(cardPrefab);
+            int randIndex = Random.Range(0, cardPrefabs.Length);
+            GameObject card = Instantiate(cardPrefabs[randIndex]);
 
             if (!cardBoard.TryAddCard(card))
             {

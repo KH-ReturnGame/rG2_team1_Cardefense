@@ -57,7 +57,7 @@ public class SCard : MonoBehaviour
         if (isOverTower && currentTower != null)
         {
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreaseAttackSpeed(1f);
+            currentTower.IncreaseAttackSpeed(0.2f);
             Destroy(gameObject);
         }
         else

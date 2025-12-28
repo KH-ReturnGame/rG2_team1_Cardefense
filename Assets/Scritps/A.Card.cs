@@ -57,7 +57,7 @@ public class ACard : MonoBehaviour
         if (isOverTower && currentTower != null)
         {
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreasedamageMultiplier(10f);
+            currentTower.IncreasedamageMultiplier(0.3f);
             Destroy(gameObject);
         }
         else
