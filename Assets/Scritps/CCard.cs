@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Card : MonoBehaviour
+public class CCard : MonoBehaviour
 {
     private Vector3 startPos;
     private Vector3 offset;
@@ -56,9 +56,8 @@ public class Card : MonoBehaviour
 
         if (isOverTower && currentTower != null)
         {
-            // 지금은 즉시 적용 구조만 연결 (실제 강화는 다음 단계)
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreaseAttackSpeed(0.1f);
+            currentTower.IncreaseCritical(10f);
             Destroy(gameObject);
         }
         else
@@ -101,7 +100,6 @@ public class Card : MonoBehaviour
 
         isOverTower = true;
 
-        // Tower 태그가 붙은 부모 아래에서 Tower.cs 탐색
         currentTower = other.GetComponentInChildren<Tower>();
 
         if (currentTower != null)

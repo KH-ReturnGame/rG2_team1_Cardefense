@@ -105,4 +105,11 @@ public class Tower : MonoBehaviour
     {
         attackRate += value;
     }
+
+    public void IncreaseCritical(float value)
+    {
+        critical += value;
+    }
+
+
 }
