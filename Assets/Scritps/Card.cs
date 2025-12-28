@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CCard : MonoBehaviour
+public class Card : MonoBehaviour
 {
     private Vector3 startPos;
     private Vector3 offset;
@@ -57,7 +57,7 @@ public class CCard : MonoBehaviour
         if (isOverTower && currentTower != null)
         {
             Debug.Log("타워에 카드 적용됨: " + currentTower.name);
-            currentTower.IncreaseCritical(10f);
+            currentTower.IncreaseAttackSpeed(1f);
             Destroy(gameObject);
         }
         else
