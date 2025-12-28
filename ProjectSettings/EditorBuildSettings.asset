@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/SelectScene.unity
+    guid: 1a21fb9c8dcb9b341abb81e35f728d57
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 08a34a4202bdeb0489bbe8b041cc0972
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
