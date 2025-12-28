@@ -12,6 +12,8 @@ public class Tower : MonoBehaviour
     public Transform firePoint;           // 총알 발사 위치
     public float rotationSpeed = 5f;      // 회전 속도
     public float critical = 5f;           // 치명타 확률 (%)
+    public float damageMultiplier = 1f;   // 추가 공격력 퍼센트 (%)
+
 
     private float attackCooldown = 0f;
     private GameObject currentTarget;
@@ -34,6 +36,7 @@ public class Tower : MonoBehaviour
         {
             Shoot();
             attackCooldown = 1f / attackRate;
+
         }
     }
 
@@ -41,24 +44,32 @@ public class Tower : MonoBehaviour
     {
         if (firePoint == null) return;
 
-        // 랜덤으로 치명타 여부 계산
+        // 치명타 판정
         float rand = Random.Range(0f, 100f);
         bool isCritical = rand < critical;
 
-        // 어떤 총알을 쏠지 결정 (치명타면 CbulletPrefab 사용)
+        // 프리팹 선택
         GameObject prefabToUse = isCritical ? CbulletPrefab : bulletPrefab;
         if (prefabToUse == null) return;
 
         // 총알 생성
         GameObject bullet = Instantiate(prefabToUse, firePoint.position, Quaternion.identity);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
 
-        if (bulletScript != null)
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript == null)
         {
-            bulletScript.enemy = currentTarget;
-            bulletScript.isCritical = isCritical; // 치명타 여부 전달
+            Debug.LogError("총알 프리팹에 Bullet 스크립트가 없습니다!");
+            return;
         }
+
+        // 총알에 정보 전달
+        bulletScript.enemy = currentTarget;
+        bulletScript.isCritical = isCritical;
+
+        // 🔥 공격력 증가 카드 반영 (여기가 핵심)
+        bulletScript.damage *= damageMultiplier;
     }
+
 
     void RotateTowardsTarget(GameObject target)
     {
@@ -105,4 +116,21 @@ public class Tower : MonoBehaviour
     {
         attackRate += value;
     }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+    public void IncreaseCritical(float value)
+    {
+        critical += value;
+    }
+
+    public void IncreasedamageMultiplier(float value)
+    {
+        damageMultiplier += value;
+    }
+
+=======
+>>>>>>> b4e2d12ce525630857cd2739eb151ccc0a5341b7
+>>>>>>> Stashed changes
 }

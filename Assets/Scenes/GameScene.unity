@@ -869,6 +869,7 @@ MonoBehaviour:
   firePoint: {fileID: 622580603}
   rotationSpeed: 30
   critical: 10
+  damageMultiplier: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b313514991b364daec1386caa521a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 6709565187002743558, guid: 48c295616d64da7478842f0c83cbdbd6,
+  cardPrefab: {fileID: 6709565187002743558, guid: 3e4609750fec7c647a90b22100cd5bce,
     type: 3}
   cardBoard: {fileID: 201546078}
   maxCardCount: 5
@@ -5727,6 +5728,7 @@ MonoBehaviour:
   firePoint: {fileID: 1704754254}
   rotationSpeed: 30
   critical: 10
+  damageMultiplier: 1
 --- !u!1 &2011991675
 GameObject:
   m_ObjectHideFlags: 0
