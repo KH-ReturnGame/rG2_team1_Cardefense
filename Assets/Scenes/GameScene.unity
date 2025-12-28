@@ -842,34 +842,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &593739136 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
-    type: 3}
-  m_PrefabInstance: {fileID: 1368605375}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &593739140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593739136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b070ffb9f079cb4a96ab3a84aa2a35d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5.5
-  attackRate: 1
-  bulletPrefab: {fileID: 7414101517605900757, guid: 4f5bf65f468142c4f8bae670ec0073b6,
-    type: 3}
-  CbulletPrefab: {fileID: 7414101517605900757, guid: b965bc89da8ee1147b9475f3e3847c0f,
-    type: 3}
-  firePoint: {fileID: 622580603}
-  rotationSpeed: 30
-  critical: 10
-  damageMultiplier: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,12 +926,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &622580603 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3774200851377173037, guid: 9a5894fc142faf94292081fbaf284697,
-    type: 3}
-  m_PrefabInstance: {fileID: 1368605375}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &636009722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,12 +986,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b313514991b364daec1386caa521a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 6709565187002743558, guid: 3e4609750fec7c647a90b22100cd5bce,
-    type: 3}
+  cardPrefabs:
+  - {fileID: 818291799659163764, guid: 92a279a75b3a7ec4d80071e8988ee850, type: 3}
+  - {fileID: 6709565187002743558, guid: 4323e830fcc2004408bb5a92e7f88844, type: 3}
+  - {fileID: 6709565187002743558, guid: 3e4609750fec7c647a90b22100cd5bce, type: 3}
   cardBoard: {fileID: 201546078}
   maxCardCount: 5
-  cardCount: 3
-  cardBoard: {fileID: 201546078}
+  cardCount: 2
 --- !u!4 &827500332
 Transform:
   m_ObjectHideFlags: 0
@@ -1161,7 +1128,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 830417445472681363, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1466,6 +1434,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 830417445472681363, guid: 9a5894fc142faf94292081fbaf284697,
+        type: 3}
+      propertyPath: range
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3224128981091357639, guid: 9a5894fc142faf94292081fbaf284697,
         type: 3}
       propertyPath: m_Name
@@ -1551,11 +1524,7 @@ PrefabInstance:
     - {fileID: 4977250475053274762, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6047104411810846735, guid: 9a5894fc142faf94292081fbaf284697,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 593739140}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a5894fc142faf94292081fbaf284697, type: 3}
 --- !u!1 &1429307729
 GameObject:
